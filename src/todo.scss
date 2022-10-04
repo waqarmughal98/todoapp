@@ -1,0 +1,171 @@
+@use "main";
+
+$highlight: #b5b5b5;
+
+.task {
+  background-color: #fff;
+  border-radius: 50px;
+  // margin: 20px 0;
+  padding: 10px;
+  display: flex;
+  .task-title {
+    display: flex;
+    align-items: center;
+    p {
+      color: main.$primary-color;
+    }
+  }
+}
+
+.todos {
+  .todo-tasks {
+    margin: 20px 0;
+    padding: 10px 20px;
+  }
+}
+
+.todo-tasks {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="checkbox"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.checkbox {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background: #fff;
+  border: 2px #585292 solid;
+  margin-right: 10px;
+  border-radius: 6px;
+  transition-duration: 500ms;
+  cursor: pointer;
+}
+
+.checkbox--active {
+  border-color: purple;
+  background: purple;
+}
+
+.text--active {
+  text-decoration: line-through;
+  color: $highlight !important;
+}
+
+.add-todo {
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  border: none;
+  color: $highlight;
+  transition: 300ms;
+  &:focus-visible {
+    outline: none;
+    color: main.$primary-color;
+  }
+}
+
+select {
+  background: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.btn-primary {
+  color: #fff;
+  padding: 10px 20px;
+  background-color: #585292;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-family: main.$main-font;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+// Dropdown
+
+.three-dots:after {
+  cursor: pointer;
+  color: #444;
+  content: "\2807";
+  // transform: rotate(30deg);
+  transform: rotate(50deg) translateY(-50%);
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+.dropdown {
+  position: absolute;
+  right: 12vw;
+  outline: none;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.1s;
+  z-index: 0.1;
+  background: #ffffff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: left;
+  .d-text {
+    text-decoration: none;
+    color: main.$primary-color;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px 0px;
+  }
+  .del {
+    color: main.$pbg;
+  }
+}
+
+.dropdown-container {
+  text-align: right;
+}
+
+.dropdown-container:focus .dropdown {
+  opacity: 1;
+  z-index: 100;
+  max-height: 100vh;
+  transition: opacity 0.2s;
+  z-index: 0.2s;
+  max-height: 0.2s;
+}
+
+.containerStyles {
+  height: 20;
+  width: 100%;
+  background-color: #3b3b3b;
+  border-radius: 50;
+  margin: 50;
+}
+
+.fillerStyles {
+  height: 100%;
+  width: 0px;
+  background-color: #fff;
+  border-radius: 50;
+  text-align: right;
+}
+
+.labelStyles {
+  padding: 5;
+  color: #fff;
+  font-weight: bold;
+}
+
+.hide-task {
+  display: none;
+}

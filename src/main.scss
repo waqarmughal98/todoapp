@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap");
+
+$main-font: "Roboto", sans-serif;
+
+$bg-color: #e5e5e5;
+$primary-color: #2e2e2e;
+$tbg-color: #f5f5f5;
+$pbg: #e07c7c;
+
+body {
+  font-family: $main-font;
+  background-color: $bg-color;
+}
+
+.main {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  .todo-bg {
+    background-color: $tbg-color;
+    position: inherit;
+    top: 25%;
+    margin: -10px auto;
+    width: 50%;
+    padding: 40px 60px;
+    border-radius: 20px;
+    .inner-todo {
+      width: 75%;
+      margin: 0 auto;
+    }
+  }
+}
+
+.progress-tab {
+  position: relative;
+  background-color: $pbg;
+  padding: 20px;
+  text-align: left;
+  border-radius: 20px;
+  h1 {
+    color: #fff;
+    font-weight: 500;
+    padding-bottom: 10px;
+  }
+  p {
+    color: #ebb9b8;
+  }
+}
+
+.todo-head {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  h1 {
+    font-weight: 500;
+  }
+}
