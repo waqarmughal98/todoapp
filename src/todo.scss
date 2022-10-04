@@ -6,7 +6,6 @@ $highlight: #b5b5b5;
   background-color: #fff;
   border-radius: 50px;
   // margin: 20px 0;
-  padding: 10px;
   display: flex;
   .task-title {
     display: flex;
@@ -15,6 +14,13 @@ $highlight: #b5b5b5;
       color: main.$primary-color;
     }
   }
+}
+
+.add-task {
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 15px 20px;
+  display: flex;
 }
 
 .todos {
@@ -168,4 +174,8 @@ select {
 
 .hide-task {
   display: none;
+}
+
+.form-todos {
+  width: 100%;
 }

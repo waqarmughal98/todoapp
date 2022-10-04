@@ -17,18 +17,11 @@ const Todo = ({ list, completList, delList, updateList }) => {
     });
   };
 
-  // if (edit.id) {
-  //   return <TodoForm edit={edit} onSubmit={submitUpdate} />;
-  // }
-
   return (
     <div className="todos">
       {list.map((elem, index) => {
         return (
-          <div
-            className={`task todo-tasks ${elem.completed ? "hide-task" : ""}`}
-            key={index}
-          >
+          <div className={`task todo-tasks`} key={index}>
             {!edit.id ? (
               <label className="task-title" key={elem.id}>
                 <input
@@ -62,13 +55,7 @@ const Todo = ({ list, completList, delList, updateList }) => {
 
             <div>
               {edit.id ? (
-                <button
-                  type="submit"
-                  className="btn-primary"
-                  onClick={updateList}
-                >
-                  Save
-                </button>
+                <div></div>
               ) : (
                 <div className="dropdown-container" tabIndex="-1">
                   <div className="three-dots"></div>

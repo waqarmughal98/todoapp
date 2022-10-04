@@ -29,8 +29,8 @@ function App() {
   const completeList = (id) => {
     const updateList = list.map((elem) => {
       if (id === elem.id) {
-        console.log(elem);
         elem.completed = !elem.completed;
+        console.log(elem.completed);
       }
       return elem;
     });

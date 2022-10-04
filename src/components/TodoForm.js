@@ -16,10 +16,22 @@ const TodoForm = (props) => {
       }
     }
   };
+
+  const addOnEdit = (e) => {
+    if (!items) {
+    } else {
+      props.onSubmit({
+        id: Math.floor(Math.random() * 10000),
+        title: items,
+        completed: false,
+      });
+      setItems("");
+    }
+  };
   return (
-    <div>
-      <div className="task">
-        {props.edit ? (
+    <div className="form-todos">
+      {props.edit ? (
+        <div className="task">
           <input
             type="text"
             className="add-todo"
@@ -28,7 +40,12 @@ const TodoForm = (props) => {
             onKeyDown={addOnEnter}
             onChange={(e) => setItems(e.target.value)}
           />
-        ) : (
+          <button type="submit" className="btn-primary" onClick={addOnEdit}>
+            Save
+          </button>
+        </div>
+      ) : (
+        <div className="add-task">
           <input
             type="text"
             className="add-todo"
@@ -37,8 +54,8 @@ const TodoForm = (props) => {
             onKeyDown={addOnEnter}
             onChange={(e) => setItems(e.target.value)}
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
