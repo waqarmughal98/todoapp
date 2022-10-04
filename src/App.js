@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
 import "./main.scss";
+import { Progress } from "react-sweet-progress";
+import "react-sweet-progress/lib/style.css";
 
 function App() {
   const [list, setList] = useState([]);
+
+  const [percent, setPercent] = useState([]);
+
+  const [count, setcount] = useState([]);
+
+  let totalLength = "";
+
+  var i = 0;
+  var percentage = 0;
+
+  useEffect(() => {
+    totalLength = list.length;
+
+    list.map((e) => {
+      return e.completed ? i++ : i;
+    });
+
+    setcount(i);
+
+    percentage = (i / totalLength) * 100;
+    percentage = parseInt(percentage);
+    setPercent(percentage);
+  }, [list]);
 
   const addList = (todo) => {
     const newTodos = [todo, ...list];
@@ -22,7 +47,6 @@ function App() {
       return ind !== elem.id;
     });
 
-    console.log(deleteList);
     setList(deleteList);
   };
 
@@ -30,7 +54,6 @@ function App() {
     const updateList = list.map((elem) => {
       if (id === elem.id) {
         elem.completed = !elem.completed;
-        console.log(elem.completed);
       }
       return elem;
     });
@@ -44,7 +67,15 @@ function App() {
         <div className="inner-todo">
           <div className="progress-tab">
             <h1>Progress</h1>
-            <p>Completed</p>
+            <Progress
+              percent={percent}
+              theme={{
+                success: {
+                  color: "#3B3B3B",
+                },
+              }}
+            />
+            <p>{count} Completed</p>
           </div>
 
           <div className="todo-head">
