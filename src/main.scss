@@ -60,3 +60,16 @@ body {
     font-weight: 500;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .main {
+    .todo-bg {
+      top: 25%;
+      width: 75%;
+      padding: 30px;
+      .inner-todo {
+        width: 100%;
+      }
+    }
+  }
+}

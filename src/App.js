@@ -69,6 +69,7 @@ function App() {
             <h1>Progress</h1>
             <Progress
               percent={percent}
+              className="progressbar"
               theme={{
                 success: {
                   color: "#3B3B3B",

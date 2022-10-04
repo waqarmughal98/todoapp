@@ -86,6 +86,7 @@ select {
   padding: 5px 10px;
   border-radius: 5px;
   outline: none;
+  width: 15%;
 }
 
 .btn-primary {
@@ -190,4 +191,8 @@ select {
 
 .react-sweet-progress-symbol {
   display: none !important;
+}
+
+.progressbar {
+  margin: 10px 0;
 }
