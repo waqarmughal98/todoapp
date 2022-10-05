@@ -39,7 +39,7 @@ function App() {
   };
 
   const updateList = (id, title) => {
-    setList((prev) => prev.map((elem) => (elem.id === id ? title : elem)));
+    setList(list.map((elem) => (elem.id === id ? title : elem)));
   };
 
   const delList = (ind) => {
@@ -81,7 +81,7 @@ function App() {
 
           <div className="todo-head">
             <h1>Tasks</h1>
-            <select name="filter" id="filter">
+            <select className="select-box" name="filter" id="filter">
               <option value="All">All</option>
             </select>
           </div>

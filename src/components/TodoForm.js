@@ -17,6 +17,10 @@ const TodoForm = (props) => {
     }
   };
 
+  const updateValue = (e) => {
+    setItems(e.target.value);
+  };
+
   const addOnEdit = (e) => {
     if (!items) {
     } else {
@@ -36,9 +40,9 @@ const TodoForm = (props) => {
             type="text"
             className="add-todo"
             placeholder="Update your todo..."
-            value={items}
+            value={props.edit.title}
             onKeyDown={addOnEnter}
-            onChange={(e) => setItems(e.target.value)}
+            onChange={updateValue}
           />
           <button type="submit" className="btn-primary" onClick={addOnEdit}>
             Save
