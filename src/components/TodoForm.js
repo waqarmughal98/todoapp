@@ -3,11 +3,7 @@ import React, { useRef, useState } from "react";
 const TodoForm = (props) => {
   const [items, setItems] = useState(props.edit ? props.edit.value : "");
 
-  const editInput = useRef(null);
-
-  if (props.edit) {
-    editInput.focus();
-  }
+  const editInput = useRef("");
 
   const addOnEnter = (e) => {
     if (e.key === "Enter") {

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import TodoForm from "../TodoForm";
 
 const TodoCards = (props) => {
-  //   const list = useContext(Functional);
-
   const elem = props.elem;
   const list = props.list;
   const setList = props.setupList;
@@ -55,6 +53,7 @@ const TodoCards = (props) => {
             }}
             key={elem.id}
           />
+
           <svg
             className={`checkbox ${elem.completed ? "checkbox--active" : ""}`}
             aria-hidden="true"
@@ -67,6 +66,7 @@ const TodoCards = (props) => {
               stroke={elem.completed ? "#fff" : "none"}
             />
           </svg>
+
           <p className={elem.completed ? "text--active" : ""}>{elem.title}</p>
         </label>
       ) : edit.id === elem.id ? (
@@ -80,6 +80,7 @@ const TodoCards = (props) => {
             }}
             key={elem.id}
           />
+
           <svg
             className={`checkbox ${elem.completed ? "checkbox--active" : ""}`}
             aria-hidden="true"
@@ -92,6 +93,7 @@ const TodoCards = (props) => {
               stroke={elem.completed ? "#fff" : "none"}
             />
           </svg>
+
           <p className={elem.completed ? "text--active" : ""}>{elem.title}</p>
         </label>
       )}

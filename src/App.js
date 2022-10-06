@@ -6,6 +6,7 @@ import TodoForm from "./components/TodoForm";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
 import TodoCards from "./components/cards/TodoCards";
+import axios from "axios";
 
 function App() {
   const [list, setList] = useState([]);
@@ -14,6 +15,15 @@ function App() {
   const [percent, setPercent] = useState([]);
   var i = 0;
   var percentage = 0;
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "/todos",
+    }).then(function (response) {
+      console.log(response);
+    });
+  }, []);
 
   useEffect(() => {
     setTotalLength(list.length);
@@ -44,6 +54,7 @@ function App() {
         <div className="inner-todo">
           <div className="progress-tab">
             <h1>Progress</h1>
+
             <Progress
               percent={percent}
               className="progressbar"
@@ -53,6 +64,7 @@ function App() {
                 },
               }}
             />
+
             <p>{count} Completed</p>
           </div>
 
@@ -77,6 +89,7 @@ function App() {
                 );
               })}
             </div>
+
             <TodoForm onSubmit={addList} />
           </div>
         </div>
