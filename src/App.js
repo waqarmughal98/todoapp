@@ -1,25 +1,22 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Todo from "./components/Todo";
-import TodoForm from "./components/TodoForm";
 import "./main.scss";
+import "./todo.scss";
+import TodoForm from "./components/TodoForm";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
+import TodoCards from "./components/cards/TodoCards";
 
 function App() {
   const [list, setList] = useState([]);
-
-  const [percent, setPercent] = useState([]);
-
   const [count, setcount] = useState([]);
-
-  let totalLength = "";
-
+  const [totalLength, setTotalLength] = useState(0);
+  const [percent, setPercent] = useState([]);
   var i = 0;
   var percentage = 0;
 
   useEffect(() => {
-    totalLength = list.length;
+    setTotalLength(list.length);
 
     list.map((e) => {
       return e.completed ? i++ : i;
@@ -28,37 +25,17 @@ function App() {
     setcount(i);
 
     percentage = (i / totalLength) * 100;
-    percentage = parseInt(percentage);
-    setPercent(percentage);
+
+    setPercent(parseInt(percentage));
   }, [list]);
+
+  const setupList = (data) => {
+    setList(data);
+  };
 
   const addList = (todo) => {
     const newTodos = [todo, ...list];
-
     setList(newTodos);
-  };
-
-  const updateList = (id, title) => {
-    setList(list.map((elem) => (elem.id === id ? title : elem)));
-  };
-
-  const delList = (ind) => {
-    const deleteList = list.filter((elem) => {
-      return ind !== elem.id;
-    });
-
-    setList(deleteList);
-  };
-
-  const completeList = (id) => {
-    const updateList = list.map((elem) => {
-      if (id === elem.id) {
-        elem.completed = !elem.completed;
-      }
-      return elem;
-    });
-
-    setList(updateList);
   };
 
   return (
@@ -87,12 +64,19 @@ function App() {
           </div>
 
           <div className="task-list">
-            <Todo
-              delList={delList}
-              completList={completeList}
-              list={list}
-              updateList={updateList}
-            />
+            <div className="todos">
+              {list.map((elem, index) => {
+                return (
+                  <TodoCards
+                    key={index}
+                    id={index}
+                    elem={elem}
+                    setupList={setupList}
+                    list={list}
+                  />
+                );
+              })}
+            </div>
             <TodoForm onSubmit={addList} />
           </div>
         </div>
@@ -102,3 +86,5 @@ function App() {
 }
 
 export default App;
+
+// export { Functional };

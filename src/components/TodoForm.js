@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const TodoForm = (props) => {
   const [items, setItems] = useState(props.edit ? props.edit.value : "");
+
+  const editInput = useRef(null);
+
+  if (props.edit) {
+    editInput.focus();
+  }
 
   const addOnEnter = (e) => {
     if (e.key === "Enter") {
@@ -15,10 +21,6 @@ const TodoForm = (props) => {
         setItems("");
       }
     }
-  };
-
-  const updateValue = (e) => {
-    setItems(e.target.value);
   };
 
   const addOnEdit = (e) => {
@@ -40,9 +42,10 @@ const TodoForm = (props) => {
             type="text"
             className="add-todo"
             placeholder="Update your todo..."
+            ref={editInput}
             value={props.edit.title}
             onKeyDown={addOnEnter}
-            onChange={updateValue}
+            onChange={(e) => setItems(e.target.value)}
           />
           <button type="submit" className="btn-primary" onClick={addOnEdit}>
             Save
