@@ -43,7 +43,7 @@ const TodoCards = (props) => {
   };
 
   return (
-    <div className={`task todo-tasks`} key={props.id}>
+    <div className={`task todo-tasks todo-div animate-delay-6`} key={props.id}>
       {!edit.id ? (
         <label className="task-title" key={elem.id}>
           <input
@@ -70,7 +70,7 @@ const TodoCards = (props) => {
           <p className={elem.completed ? "text--active" : ""}>{elem.title}</p>
         </label>
       ) : edit.id === elem.id ? (
-        <TodoForm edit={edit} onSubmit={submitUpdate} />
+        <TodoForm edit={edit} onSubmit={submitUpdate} elem={elem.title} />
       ) : (
         <label className="task-title" key={elem.id}>
           <input

@@ -12,18 +12,18 @@ function App() {
   const [list, setList] = useState([]);
   const [count, setcount] = useState([]);
   const [totalLength, setTotalLength] = useState(0);
-  const [percent, setPercent] = useState([]);
+  const [percent, setPercent] = useState(0);
   var i = 0;
   var percentage = 0;
 
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: "/todos",
-    }).then(function (response) {
-      console.log(response);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios({
+  //     method: "get",
+  //     url: "https://github.com/datawowio/todos-json-server/todos",
+  //   }).then(function (response) {
+  //     console.log(response);
+  //   });
+  // });
 
   useEffect(() => {
     setTotalLength(list.length);
@@ -48,6 +48,10 @@ function App() {
     setList(newTodos);
   };
 
+  const filterVal = (e) => {
+    return e.target.value;
+  };
+
   return (
     <div className="main">
       <div className="todo-bg">
@@ -70,8 +74,15 @@ function App() {
 
           <div className="todo-head">
             <h1>Tasks</h1>
-            <select className="select-box" name="filter" id="filter">
+            <select
+              className="select-box"
+              name="filter"
+              id="filter"
+              onChange={filterVal}
+            >
               <option value="All">All</option>
+              <option value="true">Done</option>
+              <option value="false">Undone</option>
             </select>
           </div>
 

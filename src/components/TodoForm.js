@@ -1,9 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 const TodoForm = (props) => {
   const [items, setItems] = useState(props.edit ? props.edit.value : "");
 
-  const editInput = useRef("");
+  const updateText = (e) => {
+    setItems(e.target.value);
+  };
 
   const addOnEnter = (e) => {
     if (e.key === "Enter") {
@@ -23,7 +25,7 @@ const TodoForm = (props) => {
     if (!items) {
     } else {
       props.onSubmit({
-        id: Math.floor(Math.random() * 10000),
+        id: props.edit.id,
         title: items,
         completed: false,
       });
@@ -38,10 +40,8 @@ const TodoForm = (props) => {
             type="text"
             className="add-todo"
             placeholder="Update your todo..."
-            ref={editInput}
-            value={props.edit.title}
-            onKeyDown={addOnEnter}
-            onChange={(e) => setItems(e.target.value)}
+            value={items}
+            onChange={updateText}
           />
           <button type="submit" className="btn-primary" onClick={addOnEdit}>
             Save
