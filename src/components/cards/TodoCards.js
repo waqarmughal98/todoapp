@@ -1,61 +1,38 @@
 import React, { useState } from "react";
-import TodoForm from "../TodoForm";
 
 const TodoCards = (props) => {
-  const elem = props.elem;
-  const list = props.list;
-  const setList = props.setupList;
+  const elm = props.elm;
+  // console.log(elm);
 
-  const [edit, setEdit] = useState({
-    id: null,
-    title: "",
-  });
+  // States
+  const [title, setTitle] = useState();
+  const [edit, setEdit] = useState(false);
+  const [status, setStatus] = useState(false);
 
-  const submitUpdate = (title) => {
-    updateList(edit.id, title);
-    setEdit({
-      id: null,
-      title: "",
-    });
+  // On Update Callback
+  const updateItem = (id) => {
+    props.updateListItem(id, title);
+    setEdit(false);
   };
 
-  const updateList = (id, title) => {
-    setList(list.map((elem) => (elem.id === id ? title : elem)));
+  // Update Status
+  const updateStatus = (id) => {
+    props.todoStatus(id, !status);
+    setStatus(!status);
   };
 
-  const delList = (ind) => {
-    const deleteList = list.filter((elem) => {
-      return ind !== elem.id;
-    });
-
-    setList(deleteList);
-  };
-
-  const completeList = (id) => {
-    const updateList = list.map((elem) => {
-      if (id === elem.id) {
-        elem.completed = !elem.completed;
-      }
-      return elem;
-    });
-
-    setList(updateList);
+  // Delete List
+  const deleList = (ind) => {
+    props.delList(ind);
   };
 
   return (
-    <div className={`task todo-tasks todo-div animate-delay-6`} key={props.id}>
-      {!edit.id ? (
-        <label className="task-title" key={elem.id}>
-          <input
-            type="checkbox"
-            onChange={() => {
-              completeList(elem.id);
-            }}
-            key={elem.id}
-          />
-
+    <div className="task todo-tasks todo-div animate-delay-6">
+      {!edit ? (
+        <label className="task-title">
+          <input type="checkbox" onChange={() => updateStatus(props.index)} />
           <svg
-            className={`checkbox ${elem.completed ? "checkbox--active" : ""}`}
+            className={`checkbox ${elm.completed ? "checkbox--active" : null}`}
             aria-hidden="true"
             viewBox="0 0 15 11"
             fill="none"
@@ -63,67 +40,55 @@ const TodoCards = (props) => {
             <path
               d="M1 4.5L5 9L14 1"
               strokeWidth="2"
-              stroke={elem.completed ? "#fff" : "none"}
+              stroke={elm.completed ? "#fff" : "none"}
             />
           </svg>
-
-          <p className={elem.completed ? "text--active" : ""}>{elem.title}</p>
+          <p className={elm.completed ? "text--active" : null}>{elm.title}</p>
         </label>
-      ) : edit.id === elem.id ? (
-        <TodoForm edit={edit} onSubmit={submitUpdate} elem={elem.title} />
       ) : (
-        <label className="task-title" key={elem.id}>
+        <div className="task">
           <input
-            type="checkbox"
-            onChange={() => {
-              completeList(elem.id);
-            }}
-            key={elem.id}
+            type="text"
+            className="add-todo"
+            placeholder="Update your todo..."
+            value={title ? title : elm.title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-
-          <svg
-            className={`checkbox ${elem.completed ? "checkbox--active" : ""}`}
-            aria-hidden="true"
-            viewBox="0 0 15 11"
-            fill="none"
-          >
-            <path
-              d="M1 4.5L5 9L14 1"
-              strokeWidth="2"
-              stroke={elem.completed ? "#fff" : "none"}
-            />
-          </svg>
-
-          <p className={elem.completed ? "text--active" : ""}>{elem.title}</p>
-        </label>
+        </div>
       )}
 
       <div>
-        {edit.id ? (
-          <div></div>
-        ) : (
+        {!edit ? (
           <div className="dropdown-container" tabIndex="-1">
             <div className="three-dots"></div>
             <div className="dropdown">
-              <div
+              <button
                 className="d-text"
                 onClick={() => {
-                  setEdit({ id: elem.id, title: elem.title });
+                  setEdit(true);
                 }}
               >
                 Edit
-              </div>
+              </button>
 
-              <div
+              <button
                 className="d-text del"
                 onClick={() => {
-                  delList(elem.id);
+                  deleList(elm.id);
                 }}
               >
                 Delete
-              </div>
+              </button>
             </div>
           </div>
+        ) : (
+          <button
+            type="submit"
+            className="btn-primary"
+            onClick={() => updateItem(props.index)}
+          >
+            Save
+          </button>
         )}
       </div>
     </div>

@@ -5,11 +5,12 @@ $highlight: #b5b5b5;
 .task {
   background-color: #fff;
   border-radius: 50px;
-  // margin: 20px 0;
+  width: 100%;
   display: flex;
   .task-title {
     display: flex;
     align-items: center;
+    margin-left: 20px;
     p {
       color: main.$primary-color;
     }
@@ -24,9 +25,10 @@ $highlight: #b5b5b5;
 }
 
 .todos {
+  width: 100%;
   .todo-tasks {
     margin: 20px 0;
-    padding: 10px 20px;
+    padding: 10px 0px;
     z-index: 1;
     position: relative;
   }
@@ -132,6 +134,7 @@ input[type="checkbox"] {
 .dropdown-container {
   text-align: right;
   z-index: 999;
+  margin-right: 20px;
 }
 
 .dropdown-container:focus .dropdown {
