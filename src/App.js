@@ -41,7 +41,6 @@ function App() {
   // Callbacks From Child
   const updateListItem = (index, title) => {
     let todoList = list;
-
     axios
       .put(
         `http://localhost:3000/todos/${index}`,
