@@ -20,23 +20,24 @@ function App() {
   const [list, setList] = useState([]);
   const [totalLength, setTotalLength] = useState(0);
   const [percent, setPercent] = useState(0);
+  var i = 0;
 
   useEffect(() => {
     axios.get("http://localhost:3000/todos").then((response) => {
       setList(response.data);
     });
-  }, [list]);
 
-  useEffect(() => {
     setTotalLength(list.length);
 
     list.map((e) => {
       console.log(e);
-      return e.completed ? setcount(count++) : setcount(count);
+      return e.completed ? i++ : i;
     });
 
+    setcount(i);
+
     setPercent(parseInt((count / totalLength) * 100));
-  }, [list, count, totalLength]);
+  }, [list]);
 
   // Callbacks From Child
   const updateListItem = (index, title) => {
@@ -47,9 +48,9 @@ function App() {
     axios.put(
       `http://localhost:3000/todos/${index}`,
       {
-        'id': todoList[index].id,
-        'title': title,
-        'completed': false,
+        id: todoList[index].id,
+        title: title,
+        completed: false,
       },
       { headers: { "Content-Type": "application/json" } }
     );
@@ -66,9 +67,9 @@ function App() {
     axios.put(
       `http://localhost:3000/todos?id=${list.id}`,
       {
-        'id': todoList[index].id,
-        'title': todoList[index].title,
-        'completed': status,
+        id: todoList[index].id,
+        title: todoList[index].title,
+        completed: status,
       },
       { headers: { "Content-Type": "application/json" } }
     );
