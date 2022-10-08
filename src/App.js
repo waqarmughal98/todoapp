@@ -58,11 +58,8 @@ function App() {
 
   const todoStatus = (index, status) => {
     let todoList = list;
-    console.log(status);
     todoList[index].completed = status;
     setList(todoList);
-    console.log(index);
-    console.log(todoList[index].title);
 
     axios.put(
       `http://localhost:3000/todos?id=${list.id}`,
