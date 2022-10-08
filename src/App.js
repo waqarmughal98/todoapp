@@ -31,8 +31,8 @@ function App() {
     setTotalLength(list.length);
 
     list.map((e) => {
-      // console.log(e);
-      // return e.completed ? setcount(count++) : setcount(count);
+      console.log(e);
+      return e.completed ? setcount(count++) : setcount(count);
     });
 
     setPercent(parseInt((count / totalLength) * 100));
@@ -47,8 +47,9 @@ function App() {
     axios.put(
       `http://localhost:3000/todos/${index}`,
       {
-        title: title,
-        completed: false,
+        'id': todoList[index].id,
+        'title': title,
+        'completed': false,
       },
       { headers: { "Content-Type": "application/json" } }
     );
@@ -65,9 +66,9 @@ function App() {
     axios.put(
       `http://localhost:3000/todos?id=${list.id}`,
       {
-        id: todoList[index].id,
-        title: todoList[index].title,
-        completed: status,
+        'id': todoList[index].id,
+        'title': todoList[index].title,
+        'completed': status,
       },
       { headers: { "Content-Type": "application/json" } }
     );
