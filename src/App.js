@@ -30,7 +30,6 @@ function App() {
     setTotalLength(list.length);
 
     list.map((e) => {
-      console.log(e);
       return e.completed ? i++ : i;
     });
 
@@ -56,6 +55,9 @@ function App() {
       .then(() => {
         todoList[index].title = title;
         setList(todoList);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
@@ -63,7 +65,7 @@ function App() {
     let todoList = list;
     axios
       .put(
-        `http://localhost:3000/todos?id=${list.id}`,
+        `http://localhost:3000/todos/${index}`,
         {
           id: todoList[index].id,
           title: todoList[index].title,
@@ -74,6 +76,9 @@ function App() {
       .then(() => {
         todoList[index].completed = status;
         setList(todoList);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
@@ -85,6 +90,9 @@ function App() {
       .then(() => {
         const newTodos = [todo, ...list];
         setList(newTodos);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
@@ -100,6 +108,9 @@ function App() {
           return index !== elm.id;
         });
         setList(deletList);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
