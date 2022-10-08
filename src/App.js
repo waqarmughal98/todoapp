@@ -42,34 +42,39 @@ function App() {
   // Callbacks From Child
   const updateListItem = (index, title) => {
     let todoList = list;
-    todoList[index].title = title;
-    setList(todoList);
 
-    axios.put(
-      `http://localhost:3000/todos/${index}`,
-      {
-        id: todoList[index].id,
-        title: title,
-        completed: false,
-      },
-      { headers: { "Content-Type": "application/json" } }
-    );
+    axios
+      .put(
+        `http://localhost:3000/todos/${index}`,
+        {
+          id: todoList[index].id,
+          title: title,
+          completed: false,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then(() => {
+        todoList[index].title = title;
+        setList(todoList);
+      });
   };
 
   const todoStatus = (index, status) => {
     let todoList = list;
-    todoList[index].completed = status;
-    setList(todoList);
-
-    axios.put(
-      `http://localhost:3000/todos?id=${list.id}`,
-      {
-        id: todoList[index].id,
-        title: todoList[index].title,
-        completed: status,
-      },
-      { headers: { "Content-Type": "application/json" } }
-    );
+    axios
+      .put(
+        `http://localhost:3000/todos?id=${list.id}`,
+        {
+          id: todoList[index].id,
+          title: todoList[index].title,
+          completed: status,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then(() => {
+        todoList[index].completed = status;
+        setList(todoList);
+      });
   };
 
   const addList = (todo) => {
@@ -84,23 +89,18 @@ function App() {
   };
 
   const delList = (index) => {
-    const deletList = list.filter((elm) => {
-      return index !== elm.id;
-    });
-    setList(deletList);
-
-    // axios(`http://localhost:3000/todos/${index}`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    // });
-
-    axios.delete(`http://localhost:3000/todos/${index}`, {
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    axios
+      .delete(`http://localhost:3000/todos/${index}`, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+      .then(() => {
+        const deletList = list.filter((elm) => {
+          return index !== elm.id;
+        });
+        setList(deletList);
+      });
   };
 
   // On Change Filter
