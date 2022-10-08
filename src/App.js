@@ -37,7 +37,7 @@ function App() {
     setcount(i);
 
     setPercent(parseInt((count / totalLength) * 100));
-  }, [list]);
+  }, [count, i, list, totalLength]);
 
   // Callbacks From Child
   const updateListItem = (index, title) => {
