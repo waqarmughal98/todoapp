@@ -62,23 +62,23 @@ const TodoCards = (props) => {
           <div className="dropdown-container" tabIndex="-1">
             <div className="three-dots"></div>
             <div className="dropdown">
-              <button
+              <div
                 className="d-text"
                 onClick={() => {
                   setEdit(true);
                 }}
               >
                 Edit
-              </button>
+              </div>
 
-              <button
+              <div
                 className="d-text del"
                 onClick={() => {
                   deleList(elm.id);
                 }}
               >
                 Delete
-              </button>
+              </div>
             </div>
           </div>
         ) : (
