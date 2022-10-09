@@ -41,11 +41,12 @@ function App() {
   // Callbacks From Child
   const updateListItem = (index, title) => {
     let todoList = list;
+    let todoId = todoList[index].id;
     axios
       .put(
-        `http://localhost:3000/todos/${index}`,
+        `http://localhost:3000/todos/${todoId}`,
         {
-          id: todoList[index].id,
+          id: todoId,
           title: title,
           completed: false,
         },
@@ -62,12 +63,14 @@ function App() {
 
   const todoStatus = (index, status) => {
     let todoList = list;
+    let todoId = todoList[index].id;
+    let todoTitle = todoList[index].title;
     axios
       .put(
-        `http://localhost:3000/todos/${index}`,
+        `http://localhost:3000/todos/${todoId}`,
         {
-          id: todoList[index].id,
-          title: todoList[index].title,
+          id: todoId,
+          title: todoTitle,
           completed: status,
         },
         { headers: { "Content-Type": "application/json" } }
