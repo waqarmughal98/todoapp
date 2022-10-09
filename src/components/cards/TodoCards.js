@@ -57,40 +57,38 @@ const TodoCards = (props) => {
         </div>
       )}
 
-      <div>
-        {!edit ? (
-          <div className="dropdown-container" tabIndex="-1">
-            <div className="three-dots"></div>
-            <div className="dropdown">
-              <div
-                className="d-text"
-                onClick={() => {
-                  setEdit(true);
-                }}
-              >
-                Edit
-              </div>
+      {!edit ? (
+        <div className="dropdown-container" tabIndex="-1">
+          <div className="three-dots"></div>
+          <div className="dropdown">
+            <div
+              className="d-text"
+              onClick={() => {
+                setEdit(true);
+              }}
+            >
+              Edit
+            </div>
 
-              <div
-                className="d-text del"
-                onClick={() => {
-                  deleList(elm.id);
-                }}
-              >
-                Delete
-              </div>
+            <div
+              className="d-text del"
+              onClick={() => {
+                deleList(elm.id);
+              }}
+            >
+              Delete
             </div>
           </div>
-        ) : (
-          <button
-            type="submit"
-            className="btn-primary"
-            onClick={() => updateItem(props.index)}
-          >
-            Save
-          </button>
-        )}
-      </div>
+        </div>
+      ) : (
+        <button
+          type="submit"
+          className="btn-primary"
+          onClick={() => updateItem(props.index)}
+        >
+          Save
+        </button>
+      )}
     </div>
   );
 };
